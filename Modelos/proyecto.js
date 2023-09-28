@@ -5,7 +5,7 @@ const proyectos = [
         descripcion: "Proyecto Pyme reposteria",
         imagen: null,
         donatorio: "Octavio Vivo",
-        donadores: "Bancomer,Banamex"
+        donadores: ["Bancomer","Banamex"]
 
     },
     {
@@ -14,7 +14,7 @@ const proyectos = [
       descripcion: "Proyecto de software para psicologia",
       imagen: null,
       donatorio: "Emmanuel Ruiz",
-      donadores: "Nasa,HSBC,UABC"
+      donadores: ["Banamex","HSBC","UABC"]
     }
 ]
 
@@ -27,8 +27,11 @@ const findById = function(id){
     return p
 }
 
+
+
 const add = function(id,nombre,descripcion,imagen,donatorio,donadores){
     proyectos.push(id,nombre,descripcion,imagen,donatorio,donadores);
 }
 exports.findAll = findAll;
 exports.findById = findById;
+//exports.donadoresPorProyecto = donadoresPorProyecto;
