@@ -1,7 +1,10 @@
 // Importa el módulo 'express' para crear una aplicación web.
 const express = require("express");
 const app = express();
-
+const passport = require('passport');
+require('./passport');
+ // Asume que passport.js está en la raíz del proyecto
+app.use(passport.initialize());
 // Importa el módulo 'fs' (File System) para trabajar con archivos en el sistema.
 const fs = require("fs");
 
@@ -34,9 +37,18 @@ httpsServer.listen(process.env.port, () => {
     console.log('Error al iniciar el servidor:', err);
 });
 
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+    // Lógica post autenticación
+});
+
 // Define una ruta GET para el directorio raíz '/'.
 app.get('/', function (req, res) {
     // Envía una respuesta de texto al cliente cuando se accede a la ruta raíz.
     res.send("Hola, esta es la página principal.");
     console.log('Petición tipo GET recibida');
 });
+
+
+
+
